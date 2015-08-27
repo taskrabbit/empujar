@@ -1,5 +1,6 @@
 # Empujar. Empujarlo Bueno.
-When you need to push data around, you push it. Push it real good.  An ETL and Operations tool.
+When you need to push data around, you push it. Push it real good.  
+An ETL and Operations tool.
 
 ## What
 
