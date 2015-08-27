@@ -2,6 +2,8 @@
 When you need to push data around, you push it. Push it real good.  
 An ETL and Operations tool.
 
+![https://raw.githubusercontent.com/taskrabbit/empujar/master/empujar.png](https://raw.githubusercontent.com/taskrabbit/empujar/master/empujar.png)
+
 ## What
 
 Empujar is a tool which moves stuff around.  It's built in node.js so you can do lots of stuff async-ly.  You can move data around (a ETL tool), files (a backup tool), and more!  
