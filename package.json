@@ -1,0 +1,55 @@
+{
+  "name": "empujar",
+  "version": "1.0.0",
+  "description": "When you need to push data around, you push it. Push it real good.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taskrabbit/empujar.git"
+  },
+  "keywords": [
+    "data",
+    "big",
+    "bigdata",
+    "redshift",
+    "amazon",
+    "mysql",
+    "aurora",
+    "ftp",
+    "mixpanel",
+    "elasticsearch",
+    "etl",
+    "elt",
+    "job",
+    "transform",
+    "parallel"
+  ],
+  "author": "evantahler@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taskrabbit/empujar/issues"
+  },
+  "homepage": "https://github.com/taskrabbit/empujar",
+  "dependencies": {
+    "async": "^1.4.2",
+    "aws-sdk": "^2.1.33",
+    "dateformat": "^1.0.11",
+    "delighted": "^1.0.0-beta2",
+    "elasticsearch": "^6.1.0",
+    "ftp": "^0.3.10",
+    "glob": "^5.0.3",
+    "is-running": "^1.0.5",
+    "mixpanel-data-export": "^1.6.2",
+    "mkdirp": "^0.5.0",
+    "mysql": "^2.6.1",
+    "optimist": "^0.6.1",
+    "pg": "^4.3.0",
+    "request": "^2.60.0",
+    "s3-upload-stream": "^1.0.7",
+    "utf8": "^2.1.0",
+    "winston": "^1.0.0"
+  }
+}
