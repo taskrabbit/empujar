@@ -1,7 +1,7 @@
 {
   "name": "empujar",
   "version": "1.0.0",
-  "description": "When you need to push data around, you push it. Push it real good.",
+  "description": "When you need to push data around, you push it. Push it real good.  An ETL and Operations tool.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"

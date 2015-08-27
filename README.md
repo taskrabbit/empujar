@@ -1,8 +1,5 @@
-# Empujar. 
-## Empujarlo Bueno.
-### (An ETL and Operations Tool)
-
----
+# Empujar. Empujarlo Bueno.
+When you need to push data around, you push it. Push it real good.  An ETL and Operations tool.
 
 ## What
 
@@ -76,8 +73,9 @@ book.connect(function(error, errorContext){
     setTimeout(process.exit, 5000);
   });
 });
-
 ```
+
+There is also a more formal example you can explore within this project.  Check out /books/etl to learn more.
 
 Empujar will connect to connections you define in `book/config/connections/NAME.js`, and there should be a matching transport in `/lib/connections/TYPE.js`.
 
@@ -109,3 +107,12 @@ Create your project so that it looks like this:
 1. Run your book: `node yourBook.js`
 2. Run your book in verbose mode: `node yourBook.js --logLevel debug`
 3. Run only certain chapters in your book: `node yourBook.js --chapters 1,4` or a range: `node yourBook.js --chapters 100-300`
+
+## Supported Connections:
+- mysql
+- redshift
+- elasticsearch
+- FTP
+- S3
+- mixpanel
+- delighted
