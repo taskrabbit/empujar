@@ -51,5 +51,9 @@
     "s3-upload-stream": "^1.0.7",
     "utf8": "^2.1.0",
     "winston": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.4"
   }
 }
