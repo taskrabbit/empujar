@@ -1,6 +1,6 @@
 # Empujar. Empujarlo Bueno.
 When you need to push data around, you push it. Push it real good.  
-An ETL and Operations tool.
+An ETL and Operations tool. [![Build Status](https://travis-ci.org/taskrabbit/empujar.svg?branch=master)](https://travis-ci.org/taskrabbit/empujar)
 
 ![https://raw.githubusercontent.com/taskrabbit/empujar/master/empujar.png](https://raw.githubusercontent.com/taskrabbit/empujar/master/empujar.png)
 
