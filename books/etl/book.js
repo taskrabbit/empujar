@@ -9,7 +9,7 @@ var options    = optimist.argv; // get command line opts, like `--logLevel debug
 var book = new Empujar.book(options);
 
 book.connect(function(error, errorContext){
-  if(error){ return errorHandler(error, errorContext); }
+  if(error){ return console.log(error); }
 
   var source      = book.connections.source.connection;
   var destination = book.connections.destination.connection;

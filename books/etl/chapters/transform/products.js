@@ -8,10 +8,10 @@ exports.chapterLoader = function(book){
 
   chapter.addPage('products.totalPuchases', function(next){
     var query = '';
-    query += 'UPDATE `products`                                             ';
-    query += 'SET `totalPurchases` = (                                      ';
-    query += '  SELECT count(1) FROM `purchases` WHERE userId = products.id ';
-    query += ')                                                             ';
+    query += 'UPDATE `products`                                                ';
+    query += 'SET `totalPurchases` = (                                         ';
+    query += '  SELECT count(1) FROM `purchases` WHERE productId = products.id ';
+    query += ')                                                                ';
     
     destination.query(query, next);
   });

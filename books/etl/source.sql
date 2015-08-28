@@ -1,15 +1,3 @@
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
-# Dump of table products
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `products`;
 
 CREATE TABLE `products` (
@@ -24,7 +12,6 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
 
 INSERT INTO `products` (`id`, `name`, `description`, `category`, `priceInCents`, `createdAt`, `updatedAt`)
 VALUES
@@ -39,12 +26,7 @@ VALUES
 	(9,'Yacht','big slow and fancy','boat',25000000,'2015-01-09 00:00:00','2015-01-09 00:00:00'),
 	(10,'Aircraft Carrier','planes on a boat!','boat',100000000,'2015-01-10 00:00:00','2015-01-10 00:00:00');
 
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-# Dump of table purchases
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `purchases`;
 
@@ -58,7 +40,6 @@ CREATE TABLE `purchases` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `purchases` WRITE;
-/*!40000 ALTER TABLE `purchases` DISABLE KEYS */;
 
 INSERT INTO `purchases` (`id`, `userId`, `productId`, `createdAt`, `updatedAt`)
 VALUES
@@ -75,12 +56,7 @@ VALUES
 	(12,4,5,'2015-08-11 00:00:00','2015-08-11 00:00:00'),
 	(13,5,9,'2015-08-12 00:00:00','2015-08-12 00:00:00');
 
-/*!40000 ALTER TABLE `purchases` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-# Dump of table users
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `users`;
 
@@ -95,7 +71,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
 INSERT INTO `users` (`id`, `name`, `email`, `createdAt`, `updatedAt`)
 VALUES
@@ -105,14 +80,4 @@ VALUES
 	(4,'Pablo','pablo@example.com','2015-06-06 00:00:00','2015-06-06 00:00:00'),
 	(5,'Mike','mike@example.com','2015-07-07 00:00:00','2015-08-08 00:00:00');
 
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
