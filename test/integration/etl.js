@@ -126,9 +126,9 @@ describe('integartion: ETL', function(){
   });
 
   it('should have created the empujar table with events', function(done){
-    connection.query('SELECT * FROM empujar ORDER BY time asc', function(error, rows){
+    connection.query('SELECT * FROM empujar where state = "book:end"', function(error, rows){
       should.not.exist(error);
-      rows.length.should.equal(25);
+      rows.length.should.equal(1);
       done();
     });
   });
