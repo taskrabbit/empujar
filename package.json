@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "description": "When you need to push data around, you push it. Push it real good.  An ETL and Operations tool.",
   "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "scripts": {
     "test": "mocha"
   },
