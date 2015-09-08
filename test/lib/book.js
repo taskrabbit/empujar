@@ -1,7 +1,6 @@
 var Empujar = require(__dirname + '/../../index.js');
 var should  = require('should');
 var fs      = require('fs');
-var dir     = '/tmp/empujar_test';
 
 describe('book', function(){
 
