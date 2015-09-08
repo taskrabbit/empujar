@@ -92,7 +92,7 @@ You can subscribe to `book.on('error')` and `book.on('state')` events.  A cool t
 book.on('state', function(data){  datawarehouse.insertData('empujar', [data]);  });
 ```
 
-## How to Use
+## Project Layout
 
 Create your project so that it looks like this:
 ```
@@ -108,6 +108,26 @@ Create your project so that it looks like this:
 | -----\chapters\chapte1.js
 | -----\chapters\chapte2.js
 ```
+
+## Launch Flags
+
+The defaults for all launch flags are:
+
+```
+name:         parts[(parts.length - 1)],
+chapterFiles: path.normalize( process.cwd() + '/chapters/**/*.js' ),
+configPath:   path.normalize( process.cwd() + '/config' ),
+logPath:      path.normalize( process.cwd() + '/log' ),
+pidsPath:     path.normalize( process.cwd() + '/pids' ),
+logFile:      'empujar.log',
+tmpPath:      path.normalize( process.cwd() + '/tmp' ),
+logStdout:    true,
+logLevel:     'info',
+chapters:     [],
+getAllLimit:  Infinity,
+```
+
+**Examples:**
 
 1. Run your book: `node yourBook.js`
 2. Run your book in verbose mode: `node yourBook.js --logLevel debug`

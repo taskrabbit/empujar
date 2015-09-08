@@ -33,7 +33,7 @@ var loadSourceDatabase = function(callback){
   async.series(jobs, callback);
 };
 
-describe('integartion: ETL', function(){
+describe('integration: ETL', function(){
   before(cleanup);
   // after(cleanup);
   before(loadSourceDatabase);

@@ -1,3 +1,6 @@
+log/*
+pids/*
+
 books/*/log/*
 books/*/pids/*
 books/*/tmp/*
