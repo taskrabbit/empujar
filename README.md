@@ -113,18 +113,19 @@ Create your project so that it looks like this:
 
 The defaults for all launch flags are:
 
-```
-name:         parts[(parts.length - 1)],
-chapterFiles: path.normalize( process.cwd() + '/chapters/**/*.js' ),
-configPath:   path.normalize( process.cwd() + '/config' ),
-logPath:      path.normalize( process.cwd() + '/log' ),
-pidsPath:     path.normalize( process.cwd() + '/pids' ),
-logFile:      'empujar.log',
-tmpPath:      path.normalize( process.cwd() + '/tmp' ),
-logStdout:    true,
-logLevel:     'info',
-chapters:     [],
-getAllLimit:  Infinity,
+```javascript
+{
+  chapterFiles: path.normalize( process.cwd() + '/chapters/**/*.js' ),
+  configPath:   path.normalize( process.cwd() + '/config' ),
+  logPath:      path.normalize( process.cwd() + '/log' ),
+  pidsPath:     path.normalize( process.cwd() + '/pids' ),
+  logFile:      'empujar.log',
+  tmpPath:      path.normalize( process.cwd() + '/tmp' ),
+  logStdout:    true,
+  logLevel:     'info',
+  chapters:     [],
+  getAllLimit:  Infinity,
+}
 ```
 
 **Examples:**
