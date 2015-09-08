@@ -132,6 +132,8 @@ getAllLimit:  Infinity,
 1. Run your book: `node yourBook.js`
 2. Run your book in verbose mode: `node yourBook.js --logLevel debug`
 3. Run only certain chapters in your book: `node yourBook.js --chapters 1,4` or a range: `node yourBook.js --chapters 100-300`
+4. Extract only a small subset of yoru data (great in testing) `node yourBook.js --getAllLimit 1000`
+  - This would make all invocations of `connection.getAll()` exit sucessfully after retrieving 1000 rows. 
 
 ## Supported Connections:
 - mysql
