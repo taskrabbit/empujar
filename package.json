@@ -1,6 +1,6 @@
 {
   "name": "empujar",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "When you need to push data around, you push it. Push it real good.  An ETL and Operations tool.",
   "main": "index.js",
   "engines": {
@@ -22,7 +22,6 @@
     "mysql",
     "aurora",
     "ftp",
-    "mixpanel",
     "elasticsearch",
     "etl",
     "elt",
@@ -40,12 +39,10 @@
     "async": "^1.4.2",
     "aws-sdk": "^2.1.33",
     "dateformat": "^1.0.11",
-    "delighted": "^1.0.0-beta2",
     "elasticsearch": "^6.1.0",
     "ftp": "^0.3.10",
     "glob": "^5.0.3",
     "is-running": "^1.0.5",
-    "mixpanel-data-export": "^1.6.2",
     "mkdirp": "^0.5.0",
     "mysql": "^2.6.1",
     "optimist": "^0.6.1",
