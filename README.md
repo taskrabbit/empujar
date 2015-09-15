@@ -13,14 +13,15 @@ Empujar is a tool which moves stuff around.  It's built in node.js so you can do
 Empujar's top level object is a "book", which contains "chapters" and then "pages".  Chapters are excecuted 1-by-1 in order, and then each page in a chapter can be run in parallel (up to a *threading* limit you specify).
 
 ```javascript
-
 #!/usr/bin/env node
 
 process.chdir(__dirname);
 
-var Empujar    = require(__dirname + '/../../index.js');
+var Empujar    = require('empujar');
 var optimist   = require('optimist'); 
 var options    = optimist.argv; // get command line opts, like `--logLevel debug` or `--chapters 100`
+
+var book = new Empujar.book(options);
 
 // you can define custom error behavior when a page callback retruns an error
 var errorHandler = function(error, context){
@@ -28,10 +29,9 @@ var errorHandler = function(error, context){
   setTimeout(process.exit, 5000);
 };
 
-var book = new Empujar.book(options);
+book.on('error', errorHandler);
 
-book.connect(function(error, errorContext){
-  if(error){ return errorHandler(error, errorContext); }
+book.connect(function(){
 
   // the logger will output to the console and a log file
   book.logger.log('I am a debug message', 'debug'); // log levels can be set on log lines, and toggled with the `--logLevel` flag
@@ -72,9 +72,7 @@ book.connect(function(error, errorContext){
   //   databse.insertData('empujar', [data]); 
   // });
 
-  book.on('error', errorHandler);
-
-  book.run(function(error, errorContext){
+  book.run(function(){
     setTimeout(process.exit, 5000);
   });
 });

@@ -6,16 +6,17 @@ var Empujar    = require(__dirname + '/../../index.js');
 var optimist   = require('optimist'); 
 var options    = optimist.argv; // get command line opts, like `--logLevel debug` or `--chapters 100`
 
+var book = new Empujar.book(options);
+
 // you can define custom error behavior when a page callback retruns an error
 var errorHandler = function(error, context){
   console.log("OH NO! (but I handled the error) | " + error);
   setTimeout(process.exit, 5000);
 };
 
-var book = new Empujar.book(options);
+book.on('error', errorHandler);
 
-book.connect(function(error, errorContext){
-  if(error){ return errorHandler(error, errorContext); }
+book.connect(function(){
 
   // the logger will output to the console and a log file
   book.logger.log('I am a debug message', 'debug'); // log levels can be set on log lines, and toggled with the `--logLevel` flag
@@ -55,8 +56,6 @@ book.connect(function(error, errorContext){
   // book.on('state', function(data){ 
   //   databse.insertData('empujar', [data]); 
   // });
-
-  book.on('error', errorHandler);
 
   book.run(function(){
     setTimeout(process.exit, 5000);
