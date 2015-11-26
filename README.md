@@ -126,6 +126,8 @@ The defaults for all launch flags are:
 }
 ```
 
+```javascript
+
 **Examples:**
 
 1. Run your book: `node yourBook.js`
@@ -142,3 +144,208 @@ The defaults for all launch flags are:
 - S3
 - mixpanel
 - delighted
+
+## Connections
+
+While you can create your own connections, Empujar ships with the tools to work with a number of the most common ones:
+
+- mySQL
+- Amazon Redshift
+- Elasticsearch
+- FTP
+- S3
+
+### MySQL
+
+```javascript
+var connection = book.connections.mysql.connection;
+
+connection.connect = function(callback)
+// Connection method; handled by book.connect();
+// callback is passed (error) 
+
+connection.showTables = function(callback)
+// list tables
+// callback is returned error, array of table names
+
+connection.showColumns = function(table, callback)
+// list the columns + metadata for each column
+// callback is returned error, hash of columns + metadata
+
+connection.query = function(query, data, callback)
+// query the table
+// data can be optional; used to fill in missing attributes/interpolate (?)
+// callback is returned error, rows (array of hashes col-value)
+
+connection.getAll = function(queryBase, chunkSize, dataCallback, doneCallback)
+// fetch data from the cluster; normalized as an array of hashes.  Data is already typecast.
+// queryBase -> the base mySQL query (Limit and offset will be appended automatically)
+// chunkSize -> number of results to return (IE: limit)
+// dataCallback -> callback called with each collection of data
+//   -> (error, data, next)
+//   -> data is normalized
+//   -> next() must be called to continue
+// doneCallback is passed (error, rowsFound) 
+
+connection.getMax = function(table, column, callback)
+// list the maximum value for a column in a table
+// callback is returned error, maximum value from the table or null
+
+connection.queryStream = function(query, callback)
+// get a stream that returns results of a query
+// events listed here: https://github.com/felixge/node-mysql#streaming-query-rows
+// callback is returned error, stream
+
+connection.insertData = function(table, data, callback, mergeOnDuplicates)
+// add data to an table; create the index if needed.  Data should be normalized (IE results from #getAll)
+// callback is passed (error) 
+
+connection.addColumn = function(table, column, rowData, callback)
+// add a column to a table. 
+// RowData is an array of data to insert into the column which can be used to determine the column data type
+// callback is returned error
+
+connection.alterColumn = function(table, column, definition, callback)
+// change the datatype of a column
+// definition is a mySQL statment
+// callback is returned error
+
+connection.mergeTables = function(sourceTable, destinationTable, callback)
+// merge the data from sourceTable into destinationTable
+// destinationTable will be created if if doesn't exist
+// destinationTable will be erased and recreated from sourceTable if there is no primary key present
+// callback is returned error
+
+connection.copyTableSchema = function(sourceTable, destinationTable, callback)
+// create a new table (destinationTable) with the same schema as (sourceTable)
+// callback is returned error
+
+connection.dump = function(file, options, callback)
+// mysqlDump the DB to file
+// options: 
+/*
+  if(!options.binary){   options.binary = 'mysqldump';             }
+  if(!options.database){ options.database = self.options.database; }
+  if(!options.password){ options.password = self.options.password; }
+  if(!options.host){     options.host = self.options.host;         }
+  if(!options.port){     options.port = self.options.port;         }
+  if(!options.user){     options.user = self.options.user;         }
+  if(!options.tables){   options.tables = [];                      }
+  if(!options.gzip){     options.gzip = false;                     }
+*/
+// callback is returned error
+
+```
+
+### Elasticsearch
+
+```javascript
+var connection = book.connections.mysql.connection;
+
+connection.connect = function(callback)
+// Connection method; handled by book.connect();
+// callback is passed (error) 
+
+connection.showIndices = function(callback)
+// list the indices in the cluster
+// callback is passed (error, indicies) 
+//  -> `indicies` is a hash with index names and metadata
+
+connection.insertData = function(index, data, callback)
+// add data to an index; create the index if needed.  Data should be normalized (IE results from #getAll)
+// callback is passed (error) 
+
+connection.getAll = function(index, query, fields, chunkSize, dataCallback, doneCallback)
+// fetch data from the cluster; normalized as an array of hashes.  Data is already typecast.
+// index -> string name of index
+// query -> the elasticsearch query (as a hash)
+// fields -> array of fields you want returned; '*' can be passed as an argument to request all fields
+// chunkSize -> number of results to return (from each server)
+// dataCallback -> callback called with each collection of data
+//   -> (error, data, next)
+//   -> data is normalized
+//   -> next() must be called to continue
+// doneCallback is passed (error, rowsFound) 
+
+```
+### FTP
+
+``` javascript
+var connection = book.connections.mysql.connection;
+
+connection.connect = function(callback)
+// Connection method; handled by book.connect();
+// callback is passed (error) 
+
+connection.get = function(file, callback)
+// donwload a file from the FTP server
+// callback is passed (error, stream) 
+//  -> `stream` which you can pipe to a file on disk or S3, etc
+
+connection.listFiles = function(dir, callback)
+// list files from a remote directory
+// callback is passed (error, files) 
+//  -> `files` is an array of remote file names
+
+```
+
+### Amazon Redshift
+
+``` javascript
+var connection = book.connections.mysql.connection;
+
+connection.connect = function(callback)
+// Connection method; handled by book.connect();
+// callback is passed (error) 
+
+connection.showTables = function(callback)
+// list tables
+// callback is returned error, array of table names
+
+connection.showColumns = function(table, callback)
+// list the columns + metadata for each column
+// callback is returned error, hash of columns + metadata
+
+connection.query = function(query, callback)
+// query the table
+// callback is returned error, rows (array of hashes col-value)
+
+connection.getAll = function(queryBase, chunkSize, dataCallback, doneCallback)
+// fetch data from the cluster; normalized as an array of hashes.  Data is already typecast.
+// queryBase -> the base mySQL query (Limit and offset will be appended automatically)
+// chunkSize -> number of results to return (IE: limit)
+// dataCallback -> callback called with each collection of data
+//   -> (error, data, next)
+//   -> data is normalized
+//   -> next() must be called to continue
+// doneCallback is passed (error, rowsFound) 
+
+connection.insertData = function(table, data, callback)
+// add data to an table; create the index if needed.  Data should be normalized (IE results from #getAll)
+// callback is passed (error) 
+
+connection.mergeTables = function(sourceTable, destinationTable, callback)
+// merge the data from sourceTable into destinationTable
+// destinationTable will be created if if doesn't exist
+// destinationTable will be erased and recreated from sourceTable if there is no primary key present
+// callback is returned error
+
+connection.addColumn = function(table, column, rowData, callback)
+// add a column to a table. 
+// RowData is an array of data to insert into the column which can be used to determine the column data type
+// callback is returned error
+
+connection.alterColumn = function(table, column, definition, callback)
+// change the datatype of a column
+// definition is a mySQL statment
+// callback is returned error
+
+connection.copyTableSchema = function(sourceTable, destinationTable, callback)
+// create a new table (destinationTable) with the same schema as (sourceTable)
+// callback is returned error
+
+connection.getMax = function(table, column, callback)
+// list the maximum value for a column in a table
+// callback is returned error, maximum value from the table or null
+
+```

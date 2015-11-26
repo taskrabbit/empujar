@@ -268,7 +268,6 @@ describe('connection: elasticsearch', function(){
         ];
 
         var handleData = function(error, rows, done){
-          console.log(rows)
           throw new Error('should not get here');
         };
 
