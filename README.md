@@ -126,8 +126,6 @@ The defaults for all launch flags are:
 }
 ```
 
-```javascript
-
 **Examples:**
 
 1. Run your book: `node yourBook.js`
