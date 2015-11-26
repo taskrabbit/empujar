@@ -238,7 +238,7 @@ describe('connection: mysql', function(){
             rows.length.should.equal(1);
             rows[0].id.should.equal(1);
             rows[0].money.should.equal(12.234);
-            rows[0].when.getTime().should.equal( new Date(1448486553000).getTime() ); //second resolution from mySQL
+            rows[0].when.getTime().should.be.within( new Date(1448486552000).getTime(), new Date(1448486553000).getTime() ); //second resolution from mySQL
             rows[0].small_words.should.equal('a small amount of words');
 
             done();
