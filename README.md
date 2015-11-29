@@ -12,6 +12,55 @@ Empujar is a tool which moves stuff around.  It's built in node.js so you can do
 
 Empujar's top level object is a "book", which contains "chapters" and then "pages".  Chapters are excecuted 1-by-1 in order, and then each page in a chapter can be run in parallel (up to a *threading* limit you specify).
 
+For Example, an example chapter to extract all data from a mySQL database would be:
+
+```javascript
+var dateformat = require('dateformat');
+
+exports.chapterLoader = function(book){
+
+  // define
+  var chapter = book.addChapter(1, 'EXTRACT & LOAD', {threads: 5});
+
+  // helpers
+  var source       = book.connections.source.connection;
+  var destination  = book.connections.destination.connection;
+  var queryLimit   = 1000;
+  var tableMaxes   = {};
+
+  var extractTable = function(table, callback){
+    destination.getMax(table, 'updatedAt', function(error, max){
+      if(error){ return callback(error); }
+      
+      var query = 'SELECT * FROM `' + table + '` ';
+      if(max){
+        query += ' WHERE `updatedAt` >= "' + dateformat(max, 'yyyy-mm-dd HH:MM:ss') + '"';
+      }
+
+      source.getAll(query, queryLimit, function(error, rows, done){
+        destination.insertData(table, rows, function(error){
+          if(error){ return next(error); }
+          done();
+        });
+      }, callback);
+    });
+  };
+
+  chapter.addLoader('determine extract queries', function(done){
+    source.tables.forEach(function(table){
+      chapter.addPage('extract table: ' + table, function(next){
+        extractTable(table, next);
+      });
+    });
+    done();
+  });
+
+};
+
+```
+
+Empujar runs operations in series or parallel.  These are defined by `books` and `chapters` and `pages`.
+
 ```javascript
 #!/usr/bin/env node
 
