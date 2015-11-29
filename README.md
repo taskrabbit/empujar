@@ -134,15 +134,6 @@ The defaults for all launch flags are:
 4. Extract only a small subset of yoru data (great in testing) `node yourBook.js --getAllLimit 1000`
   - This would make all invocations of `connection.getAll()` exit sucessfully after retrieving 1000 rows. 
 
-## Supported Connections:
-- mysql
-- redshift
-- elasticsearch
-- FTP
-- S3
-- mixpanel
-- delighted
-
 ## Connections
 
 While you can create your own connections, Empujar ships with the tools to work with a number of the most common ones:
