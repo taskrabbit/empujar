@@ -339,9 +339,10 @@ describe('connection: mysql', function(){
         buildUserTable(function(){
           var data = [{id: 1, first_name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque consectetur ullamcorper sapien. Phasellus tincidunt quam eu ligula vestibulum convallis. Nulla facilisi. Nulla aliquam ac elit id venenatis. In hac habitasse platea dictumst. Vestibulum dolor arcu, egestas non lacus ac, cursus semper lacus. Nunc sed commodo quam. Vivamus vitae augue vitae leo vulputate maximus sed sagittis dolor.'}];
           mysql.insertData('users', data, function(error){
+            should.not.exist(error);
             helper.query('describe `users`', function(error, tableCreate){
               tableCreate.forEach(function(col){
-                if(col.Field === 'message'){ col.Type.should.equal( 'text' ); }
+                if(col.Field === 'first_name'){ col.Type.should.equal( 'text' ); }
               });
 
               done();
