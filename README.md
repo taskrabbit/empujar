@@ -1,6 +1,6 @@
 # Empujar. Empujarlo Bueno.
 When you need to push data around, you push it. Push it real good.  
-An ETL and Operations tool. 
+An ETL and Operations tool.
 
 [![Build Status](https://travis-ci.org/taskrabbit/empujar.svg?branch=master)](https://travis-ci.org/taskrabbit/empujar)
 
@@ -31,7 +31,7 @@ exports.chapterLoader = function(book){
   var extractTable = function(table, callback){
     destination.getMax(table, 'updatedAt', function(error, max){
       if(error){ return callback(error); }
-      
+
       var query = 'SELECT * FROM `' + table + '` ';
       if(max){
         query += ' WHERE `updatedAt` >= "' + dateformat(max, 'yyyy-mm-dd HH:MM:ss') + '"';
@@ -67,7 +67,7 @@ Empujar runs operations in series or parallel.  These are defined by `books` and
 process.chdir(__dirname);
 
 var Empujar    = require('empujar');
-var optimist   = require('optimist'); 
+var optimist   = require('optimist');
 var options    = optimist.argv; // get command line opts, like `--logLevel debug` or `--chapters 100`
 
 var book = new Empujar.book(options);
@@ -104,7 +104,7 @@ book.connect(function(){
 
   // chapters can also have pre-loaders which run before all pages
   chapter2.addLoader('do something before', function(next){
-    book.logger.log('I am the preloader'); 
+    book.logger.log('I am the preloader');
     next();
   });
 
@@ -117,8 +117,8 @@ book.connect(function(){
   // book.loadChapters();
 
   // you can also configure an optional logger (perhaps to a DB) for empujar's internal status
-  // book.on('state', function(data){ 
-  //   databse.insertData('empujar', [data]); 
+  // book.on('state', function(data){
+  //   databse.insertData('empujar', [data]);
   // });
 
   book.run(function(){
@@ -181,7 +181,7 @@ The defaults for all launch flags are:
 2. Run your book in verbose mode: `node yourBook.js --logLevel debug`
 3. Run only certain chapters in your book: `node yourBook.js --chapters 1,4` or a range: `node yourBook.js --chapters 100-300`
 4. Extract only a small subset of yoru data (great in testing) `node yourBook.js --getAllLimit 1000`
-  - This would make all invocations of `connection.getAll()` exit sucessfully after retrieving 1000 rows. 
+  - This would make all invocations of `connection.getAll()` exit sucessfully after retrieving 1000 rows.
 
 ## Connections
 
@@ -200,7 +200,7 @@ var connection = book.connections.mysql.connection;
 
 connection.connect = function(callback)
 // Connection method; handled by book.connect();
-// callback is passed (error) 
+// callback is passed (error)
 
 connection.showTables = function(callback)
 // list tables
@@ -223,7 +223,7 @@ connection.getAll = function(queryBase, chunkSize, dataCallback, doneCallback)
 //   -> (error, data, next)
 //   -> data is normalized
 //   -> next() must be called to continue
-// doneCallback is passed (error, rowsFound) 
+// doneCallback is passed (error, rowsFound)
 
 connection.getMax = function(table, column, callback)
 // list the maximum value for a column in a table
@@ -236,10 +236,10 @@ connection.queryStream = function(query, callback)
 
 connection.insertData = function(table, data, callback, mergeOnDuplicates)
 // add data to an table; create the index if needed.  Data should be normalized (IE results from #getAll)
-// callback is passed (error) 
+// callback is passed (error)
 
 connection.addColumn = function(table, column, rowData, callback)
-// add a column to a table. 
+// add a column to a table.
 // RowData is an array of data to insert into the column which can be used to determine the column data type
 // callback is returned error
 
@@ -260,7 +260,7 @@ connection.copyTableSchema = function(sourceTable, destinationTable, callback)
 
 connection.dump = function(file, options, callback)
 // mysqlDump the DB to file
-// options: 
+// options:
 /*
   if(!options.binary){   options.binary = 'mysqldump';             }
   if(!options.database){ options.database = self.options.database; }
@@ -282,16 +282,16 @@ var connection = book.connections.mysql.connection;
 
 connection.connect = function(callback)
 // Connection method; handled by book.connect();
-// callback is passed (error) 
+// callback is passed (error)
 
 connection.showIndices = function(callback)
 // list the indices in the cluster
-// callback is passed (error, indicies) 
+// callback is passed (error, indicies)
 //  -> `indicies` is a hash with index names and metadata
 
 connection.insertData = function(index, data, callback)
 // add data to an index; create the index if needed.  Data should be normalized (IE results from #getAll)
-// callback is passed (error) 
+// callback is passed (error)
 
 connection.getAll = function(index, query, fields, chunkSize, dataCallback, doneCallback)
 // fetch data from the cluster; normalized as an array of hashes.  Data is already typecast.
@@ -303,9 +303,48 @@ connection.getAll = function(index, query, fields, chunkSize, dataCallback, done
 //   -> (error, data, next)
 //   -> data is normalized
 //   -> next() must be called to continue
-// doneCallback is passed (error, rowsFound) 
+// doneCallback is passed (error, rowsFound)
 
 ```
+
+### S3
+``` javascript
+var connection = book.connections.s3.connection;
+
+connection.connect = function(callback)
+// Connection method; handled by book.connect();
+// callback is passed (error)
+
+connection.listFolders = function(prefix, callback)
+// list all folders in this S3 bucket (starting with `prefix`)
+// prefix can be `*`of `''` to get all folders in the bucket
+// callback is passed (error, arrayOfFolderNames)
+
+connection.listObjects = function(prefix, callback)
+// list all objects in this S3 bucket (starting with `prefix`)
+// prefix can be `*`of `''` to get all folders in the bucket
+// callback is passed (error, arrayOfObjectNames)
+
+connection.deleteFolder = function(prefix, callback)
+// delete the folder starging with `prefix`, and all objects contatined within
+// like `rm -rf prefix`
+// prefix can be `*`of `''` to delete all folders and files in the bucket
+// callback is passed (error)
+
+connection.objectExists = function(filename, callback)
+// check if a file exists in this bucket
+// callback is passed (error, exists) where exists is a boolean
+
+connection.delete = function(filename, callback)
+// delete a file from this bucket
+// callback is passed (error)
+
+connection.streamingUpload = function(inputStream, filename, callback)
+// upload a file* to S3 with the filename `filename`
+// the file you are uploading should be a readableStream created with fs.createReadStream
+// callback is passed (error)
+```
+
 ### FTP
 
 ``` javascript
@@ -313,16 +352,16 @@ var connection = book.connections.mysql.connection;
 
 connection.connect = function(callback)
 // Connection method; handled by book.connect();
-// callback is passed (error) 
+// callback is passed (error)
 
 connection.get = function(file, callback)
 // donwload a file from the FTP server
-// callback is passed (error, stream) 
+// callback is passed (error, stream)
 //  -> `stream` which you can pipe to a file on disk or S3, etc
 
 connection.listFiles = function(dir, callback)
 // list files from a remote directory
-// callback is passed (error, files) 
+// callback is passed (error, files)
 //  -> `files` is an array of remote file names
 
 ```
@@ -334,7 +373,7 @@ var connection = book.connections.mysql.connection;
 
 connection.connect = function(callback)
 // Connection method; handled by book.connect();
-// callback is passed (error) 
+// callback is passed (error)
 
 connection.showTables = function(callback)
 // list tables
@@ -356,11 +395,11 @@ connection.getAll = function(queryBase, chunkSize, dataCallback, doneCallback)
 //   -> (error, data, next)
 //   -> data is normalized
 //   -> next() must be called to continue
-// doneCallback is passed (error, rowsFound) 
+// doneCallback is passed (error, rowsFound)
 
 connection.insertData = function(table, data, callback)
 // add data to an table; create the index if needed.  Data should be normalized (IE results from #getAll)
-// callback is passed (error) 
+// callback is passed (error)
 
 connection.mergeTables = function(sourceTable, destinationTable, callback)
 // merge the data from sourceTable into destinationTable
@@ -369,7 +408,7 @@ connection.mergeTables = function(sourceTable, destinationTable, callback)
 // callback is returned error
 
 connection.addColumn = function(table, column, rowData, callback)
-// add a column to a table. 
+// add a column to a table.
 // RowData is an array of data to insert into the column which can be used to determine the column data type
 // callback is returned error
 
