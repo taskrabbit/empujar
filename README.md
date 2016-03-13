@@ -187,11 +187,11 @@ The defaults for all launch flags are:
 
 While you can create your own connections, Empujar ships with the tools to work with a number of the most common ones:
 
-- mySQL
-- Amazon Redshift
-- Elasticsearch
-- FTP
-- S3
+- [#mysql](mySQL)
+- [#amazon-redshift](Amazon Redshift)
+- [#elasticsearch](Elasticsearch)
+- [#ftp](FTP)
+- [#s3](S3)
 
 ### MySQL
 
