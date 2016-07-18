@@ -36,25 +36,25 @@
   },
   "homepage": "https://github.com/taskrabbit/empujar",
   "dependencies": {
-    "async": "^1.4.2",
+    "async": "^2.0.0",
     "aws-sdk": "^2.1.33",
     "dateformat": "^1.0.11",
-    "elasticsearch": "^10.0.0",
+    "elasticsearch": "^11.0.1",
     "filesize": "^3.1.4",
     "ftp": "^0.3.10",
-    "glob": "^5.0.3",
+    "glob": "^7.0.5",
     "is-running": "^2.0.0",
     "mkdirp": "^0.5.0",
     "mysql": "^2.6.1",
     "optimist": "^0.6.1",
-    "pg": "^4.3.0",
+    "pg": "^6.0.2",
     "request": "^2.60.0",
     "s3-upload-stream": "^1.0.7",
     "utf8": "^2.1.0",
-    "winston": "^1.0.0"
+    "winston": "^2.2.0"
   },
   "devDependencies": {
     "mocha": "^2.2.5",
-    "should": "^7.0.4"
+    "should": "^10.0.0"
   }
 }
