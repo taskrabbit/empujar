@@ -43,7 +43,7 @@
     "filesize": "^3.1.4",
     "ftp": "^0.3.10",
     "glob": "^5.0.3",
-    "is-running": "^2.0.0",
+    "is-running": "^2.0.1",
     "mkdirp": "^0.5.0",
     "mysql": "^2.6.1",
     "optimist": "^0.6.1",
