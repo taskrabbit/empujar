@@ -50,7 +50,7 @@
     "pg": "^6.1.0",
     "request": "^2.60.0",
     "s3-upload-stream": "^1.0.7",
-    "utf8": "^2.1.0",
+    "utf8": "^2.1.2",
     "winston": "^1.0.0"
   },
   "devDependencies": {
