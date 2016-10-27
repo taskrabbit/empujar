@@ -39,7 +39,7 @@
     "async": "^2.1.1",
     "aws-sdk": "^2.6.8",
     "dateformat": "^1.0.11",
-    "elasticsearch": "^11.0.1",
+    "elasticsearch": "^12.0.1",
     "filesize": "^3.1.4",
     "ftp": "^0.3.10",
     "glob": "^7.1.1",
