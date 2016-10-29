@@ -49,9 +49,9 @@ describe('connection: elasticsearch', function(){
       beforeEach(function(done){
         helper.indices.delete({index: index}, function(error){
           setTimeout(function(){
-            if(!error || error.message.match(/IndexMissingException/)){
+            if(!error || error.message.match(/IndexMissingException/) || error.message.match(/index_not_found/) ){
               done();
-            }else{ 
+            }else{
               done(error);
             }
           }, sleep);
@@ -63,12 +63,12 @@ describe('connection: elasticsearch', function(){
         // null, int, float, boolean, small-text, large-text, date, primary key
         var data = [
           {
-            id: 1, 
-            counter: 4, 
-            happy: true, 
-            money: 100.012, 
-            when: new Date(1448486552507), 
-            small_words: 'a small amount of words', 
+            id: 1,
+            counter: 4,
+            happy: true,
+            money: 100.012,
+            when: new Date(1448486552507),
+            small_words: 'a small amount of words',
           }
         ];
 
@@ -99,12 +99,12 @@ describe('connection: elasticsearch', function(){
         // null, int, float, boolean, small-text, large-text, date, primary key
         var data = [
           {
-            id: 1, 
-            counter: 4, 
-            happy: true, 
-            money: 100.012, 
-            when: new Date(1448486552507), 
-            small_words: 'a small amount of words', 
+            id: 1,
+            counter: 4,
+            happy: true,
+            money: 100.012,
+            when: new Date(1448486552507),
+            small_words: 'a small amount of words',
           }
         ];
 
@@ -114,8 +114,8 @@ describe('connection: elasticsearch', function(){
 
             data = [
               {
-                id: 1, 
-                happy: false, 
+                id: 1,
+                happy: false,
               }
             ];
 
@@ -151,25 +151,25 @@ describe('connection: elasticsearch', function(){
         helper.indices.delete({index: index}, function(error){
           setTimeout(function(){
             if(!error || error.message.match(/IndexMissingException/)){
-              
+
               var data = [
                 {
-                  id: 1, 
-                  email: 'evan@taskrabbit.com', 
-                  first_name: 'evan', 
-                  when: new Date(1448486552507), 
+                  id: 1,
+                  email: 'evan@taskrabbit.com',
+                  first_name: 'evan',
+                  when: new Date(1448486552507),
                 },
                 {
-                  id: 2, 
-                  email: 'aaron@taskrabbit.com', 
-                  first_name: 'aaron', 
-                  when: new Date(), 
+                  id: 2,
+                  email: 'aaron@taskrabbit.com',
+                  first_name: 'aaron',
+                  when: new Date(),
                 },
                 {
-                  id: 3, 
-                  email: 'pablo@taskrabbit.com', 
-                  first_name: 'pablo', 
-                  when: new Date(), 
+                  id: 3,
+                  email: 'pablo@taskrabbit.com',
+                  first_name: 'pablo',
+                  when: new Date(),
                 }
               ];
 
@@ -179,7 +179,7 @@ describe('connection: elasticsearch', function(){
                 }, sleep);
               });
 
-            }else{ 
+            }else{
               done(error);
             }
           }, sleep);
