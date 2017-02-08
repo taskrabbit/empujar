@@ -37,7 +37,7 @@
   "homepage": "https://github.com/taskrabbit/empujar",
   "dependencies": {
     "async": "^2.1.1",
-    "aws-sdk": "^2.7.10",
+    "aws-sdk": "^2.10.0",
     "dateformat": "^2.0.0",
     "elasticsearch": "^12.1.0",
     "filesize": "^3.4.1",
