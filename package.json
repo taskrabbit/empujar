@@ -40,7 +40,7 @@
     "aws-sdk": "^2.10.0",
     "dateformat": "^2.0.0",
     "elasticsearch": "^12.1.0",
-    "filesize": "^3.4.1",
+    "filesize": "^3.5.10",
     "ftp": "^0.3.10",
     "glob": "^7.1.1",
     "is-running": "^2.0.1",
