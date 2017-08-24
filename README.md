@@ -280,7 +280,7 @@ connection.dump = function(file, options, callback)
 ### Elasticsearch
 
 ```javascript
-var connection = book.connections.mysql.connection;
+var connection = book.connections.elasticsearch.connection;
 
 connection.connect = function(callback)
 // Connection method; handled by book.connect();
@@ -350,7 +350,7 @@ connection.streamingUpload = function(inputStream, filename, callback)
 ### FTP
 
 ``` javascript
-var connection = book.connections.mysql.connection;
+var connection = book.connections.ftp.connection;
 
 connection.connect = function(callback)
 // Connection method; handled by book.connect();
@@ -371,7 +371,7 @@ connection.listFiles = function(dir, callback)
 ### Amazon Redshift
 
 ``` javascript
-var connection = book.connections.mysql.connection;
+var connection = book.connections.redshift.connection;
 
 connection.connect = function(callback)
 // Connection method; handled by book.connect();
