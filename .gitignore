@@ -6,3 +6,4 @@ books/*/pids/*
 books/*/tmp/*
 
 node_modules/*
+.idea*
