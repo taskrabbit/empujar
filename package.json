@@ -1,6 +1,6 @@
 {
   "name": "empujar",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "When you need to push data around, you push it. Push it real good.  An ETL and Operations tool.",
   "main": "index.js",
   "engines": {
