@@ -1,6 +1,6 @@
 {
   "name": "empujar",
-  "version": "0.2.10",
+  "version": "0.2.9",
   "description": "When you need to push data around, you push it. Push it real good.  An ETL and Operations tool.",
   "main": "index.js",
   "engines": {
@@ -40,7 +40,7 @@
     "async": "^2.1.1",
     "aws-sdk": "^2.10.0",
     "dateformat": "^2.0.0",
-    "elasticsearch": "^15.4.0",
+    "elasticsearch": "^12.1.0",
     "filesize": "^3.4.1",
     "ftp": "^0.3.10",
     "glob": "^7.1.1",
