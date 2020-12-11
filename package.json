@@ -53,7 +53,7 @@
     "s3-upload-stream": "^1.0.7",
     "snowflake-sdk": "1.5.3",
     "utf8": "^2.1.2",
-    "winston": "^1.0.0"
+    "winston": "^2.3.0"
   },
   "devDependencies": {
     "mocha": "^3.0.0",
